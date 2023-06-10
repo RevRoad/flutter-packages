@@ -91,6 +91,7 @@ class GoogleSignInUserData {
     this.photoUrl,
     this.idToken,
     this.serverAuthCode,
+    this.grantedScopes,
   });
 
   /// The display name of the signed in user.
@@ -128,6 +129,9 @@ class GoogleSignInUserData {
 
   /// Server auth code used to access Google Login
   String? serverAuthCode;
+
+  /// List of scopes granted by the signed in user
+  List<String>? grantedScopes;
 
   @override
   // TODO(stuartmorgan): Make this class immutable in the next breaking change.

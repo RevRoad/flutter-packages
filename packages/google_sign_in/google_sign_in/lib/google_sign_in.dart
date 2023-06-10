@@ -48,7 +48,8 @@ class GoogleSignInAccount implements GoogleIdentity {
         id = data.id,
         photoUrl = data.photoUrl,
         serverAuthCode = data.serverAuthCode,
-        _idToken = data.idToken;
+        _idToken = data.idToken,
+        grantedScopes = data.grantedScopes;
 
   // These error codes must match with ones declared on Android and iOS sides.
 
@@ -75,6 +76,8 @@ class GoogleSignInAccount implements GoogleIdentity {
 
   final String? _idToken;
   final GoogleSignIn _googleSignIn;
+
+  final List<String>? grantedScopes;
 
   /// Retrieve [GoogleSignInAuthentication] for this account.
   ///
@@ -141,12 +144,13 @@ class GoogleSignInAccount implements GoogleIdentity {
         id == otherAccount.id &&
         photoUrl == otherAccount.photoUrl &&
         serverAuthCode == otherAccount.serverAuthCode &&
+        grantedScopes == otherAccount.grantedScopes &&
         _idToken == otherAccount._idToken;
   }
 
   @override
   int get hashCode =>
-      Object.hash(displayName, email, id, photoUrl, _idToken, serverAuthCode);
+      Object.hash(displayName, email, id, photoUrl, _idToken, serverAuthCode, grantedScopes);
 
   @override
   String toString() {
@@ -155,7 +159,8 @@ class GoogleSignInAccount implements GoogleIdentity {
       'email': email,
       'id': id,
       'photoUrl': photoUrl,
-      'serverAuthCode': serverAuthCode
+      'serverAuthCode': serverAuthCode,
+      'grantedScopes': grantedScopes
     };
     return 'GoogleSignInAccount:$data';
   }
